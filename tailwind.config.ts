@@ -1,10 +1,10 @@
 import type { Config } from "tailwindcss";
 
 function generatePixelObject(max: number) {
-    return Array.from(Array(max)).reduce((acc, _, i) => {
-        acc[i] = `${i}px`;
-        return acc;
-    }, {}) as Record<string, string>;
+  return Array.from(Array(max)).reduce((acc, _, i) => {
+    acc[i] = `${i}px`;
+    return acc;
+  }, {}) as Record<string, string>;
 }
 
 const px0_10 = generatePixelObject(11);
@@ -20,61 +20,60 @@ const config: Config = {
   ],
   theme: {
     extend: {
-        borderWidth: px0_10,
-        fontSize: px0_100,
-        lineHeight: px0_100,
-        minWidth: px0_2000,
-        minHeight: px0_2000,
-        maxWidth: px0_2000,
-        maxHeight: px0_2000,
-        spacing: px0_200,
-        borderRadius: px0_100,
-        width: px0_2000,
-        height: px0_2000,
-        inset: px0_2000,
+      borderWidth: px0_10,
+      fontSize: px0_100,
+      lineHeight: px0_100,
+      minWidth: px0_2000,
+      minHeight: px0_2000,
+      maxWidth: px0_2000,
+      maxHeight: px0_2000,
+      spacing: px0_200,
+      borderRadius: px0_100,
+      width: px0_2000,
+      height: px0_2000,
+      inset: px0_2000,
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
-        screens: {
-            'xl': {max: '1279px'},
-            'lg': {max: '1023px'},
-            'md': {max: '767px'},
-            'sm': {max: '576px'},
-        },
+      screens: {
+        xl: { max: "1279px" },
+        lg: { max: "1023px" },
+        md: { max: "767px" },
+        sm: { max: "576px" },
+      },
 
-        animation: {
-            slideDown: 'slideDown 0.5s ease-in-out forwards',
-            slideUp: 'slideUp 0.5s ease-in-out forwards',
-            spring: 'spring 0.3s ease-out forwards',
-            fadeIn: 'fadeIn 1s ease-out forwards',
-            growUp: 'growUp 1s ease-out forwards',
+      animation: {
+        slideDown: "slideDown 0.5s ease-in-out forwards",
+        slideUp: "slideUp 0.5s ease-in-out forwards",
+        spring: "spring 0.3s ease-out forwards",
+        fadeIn: "fadeIn 1s ease-out forwards",
+        growUp: "growUp 1s ease-out forwards",
+      },
+      keyframes: {
+        slideDown: {
+          "0%": { transform: "translateY(-100%)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
         },
-        keyframes: {
-            slideDown: {
-                '0%': { transform: 'translateY(-100%)', opacity: '0' },
-                '100%': { transform: 'translateY(0)', opacity: '1' },
-            },
-            slideUp: {
-                '0%': { transform: 'translateY(0)', opacity: '1' },
-                '100%': { transform: 'translateY(-100%)', opacity: '0' },
-            },
-            spring: {
-                '0%': { transform: 'scale(1)' },
-                '50%': { transform: 'scale(1.1)' },
-                '100%': { transform: 'scale(1)' },
-            },
-            fadeIn: {
-                '0%': { opacity: '0' },
-                '100%': { opacity: '1' },
-            },
-            growUp: {
-                '0%': { maxHeight: '0%' },
-                '100%': { maxHeight: '100%' },
-            },
+        slideUp: {
+          "0%": { transform: "translateY(0)", opacity: "1" },
+          "100%": { transform: "translateY(-100%)", opacity: "0" },
         },
+        spring: {
+          "0%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.1)" },
+          "100%": { transform: "scale(1)" },
+        },
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        growUp: {
+          "0%": { maxHeight: "0%" },
+          "100%": { maxHeight: "100%" },
+        },
+      },
     },
-
   },
   plugins: [],
 };
