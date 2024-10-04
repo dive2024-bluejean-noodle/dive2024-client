@@ -1,9 +1,9 @@
-"use server";
+'use server';
 
-import webpush from "web-push";
+import webpush from 'web-push';
 
 webpush.setVapidDetails(
-  "mailto:min49590@gmail.com",
+  'mailto:min49590@gmail.com',
   process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!,
   process.env.VAPID_PRIVATE_KEY!,
 );
@@ -26,21 +26,21 @@ export async function unsubscribeUser() {
 
 export async function sendNotification(message: string) {
   if (!subscription) {
-    throw new Error("No subscription available");
+    throw new Error('No subscription available');
   }
 
   try {
     await webpush.sendNotification(
       subscription as unknown as webpush.PushSubscription,
       JSON.stringify({
-        title: "Test Notification",
+        title: 'Test Notification',
         body: message,
-        icon: "/icon.png",
+        icon: '/icon.png',
       }),
     );
     return { success: true };
   } catch (error) {
-    console.error("Error sending push notification:", error);
-    return { success: false, error: "Failed to send notification" };
+    console.error('Error sending push notification:', error);
+    return { success: false, error: 'Failed to send notification' };
   }
 }

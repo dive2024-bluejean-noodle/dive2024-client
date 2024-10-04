@@ -1,30 +1,30 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import {
   sendNotification,
   subscribeUser,
   unsubscribeUser,
-} from "@/app/actions";
+} from '@/app/actions';
 
 export default function PushNotificationManager() {
   const [isSupported, setIsSupported] = useState(false);
   const [subscription, setSubscription] = useState<PushSubscription | null>(
     null,
   );
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
-    if ("serviceWorker" in navigator && "PushManager" in window) {
+    if ('serviceWorker' in navigator && 'PushManager' in window) {
       setIsSupported(true);
       registerServiceWorker();
     }
   }, []);
 
   async function registerServiceWorker() {
-    const registration = await navigator.serviceWorker.register("/sw.js", {
-      scope: "/",
-      updateViaCache: "none",
+    const registration = await navigator.serviceWorker.register('/sw.js', {
+      scope: '/',
+      updateViaCache: 'none',
     });
     const sub = await registration.pushManager.getSubscription();
     setSubscription(sub);
@@ -51,7 +51,7 @@ export default function PushNotificationManager() {
   async function sendTestNotification() {
     if (subscription) {
       await sendNotification(message);
-      setMessage("");
+      setMessage('');
     }
   }
 
@@ -85,10 +85,10 @@ export default function PushNotificationManager() {
 }
 
 function urlBase64ToUint8Array(base64String: string) {
-  const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+  const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
   const base64 = (base64String + padding)
-    .replace(/-/g, "+") // 이스케이프 문자 제거
-    .replace(/_/g, "/");
+    .replace(/-/g, '+') // 이스케이프 문자 제거
+    .replace(/_/g, '/');
 
   console.log(base64String);
   console.log(base64);
