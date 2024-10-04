@@ -32,7 +32,7 @@ export default function LandingHome() {
           Login
         </Link>
         <Link
-          href={"/signup"}
+          href={"/signup/select"}
           className={`w-full h-48 rounded-12 flex items-center justify-center text-24 bg-bg-sand text-white font-bold ${seoleimFont.className}`}
         >
           Signup
