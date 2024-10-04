@@ -34,7 +34,10 @@ const menuItemList = [
 
 function NaviBar() {
   return (
-    <nav className={'fixed bottom-0 left-0 right-0 h-60 w-screen border-t-1'}>
+    <nav
+      className={
+        'fixed bottom-0 left-0 right-0 h-60 w-screen border-t-2 bg-white'
+      }>
       <div className={'flex justify-around w-full h-full'}>
         {menuItemList.map((item) => (
           <Link

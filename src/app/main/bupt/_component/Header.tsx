@@ -5,11 +5,13 @@ import { FaBookmark } from 'react-icons/fa';
 export default function BuptHeader() {
   return (
     <header
-      className={'w-full h-60 flex items-center justify-between border-b-1'}>
+      className={
+        'w-full h-60 flex items-center justify-between border-b-1 fixed top-0 left-0 right-0 bg-white'
+      }>
       <button className={'p-16'}>
         <GiHamburgerMenu size={24} />
       </button>
-      <h3 className={'font-bold text-24'}>AI 검색</h3>
+      <h3 className={'font-bold text-24'}>Search for AI</h3>
       <div className={'flex items-center'}>
         <button className={'p-16'}>
           <FaBookmark size={24} />
