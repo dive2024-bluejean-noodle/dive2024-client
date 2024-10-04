@@ -56,12 +56,12 @@ function LandingForm({
       }>
       <button
         onClick={() => setStep('login')}
-        className={`border-2 border-white w-full h-48 rounded-12 flex items-center justify-center text-24 text-white font-bold ${seoleimFont.className}`}>
+        className={`border-2 border-white w-full h-48 rounded-12 flex items-center justify-center text-24 text-white font-bold`}>
         Login
       </button>
       <Link
         href={'/signup/select'}
-        className={`w-full h-48 rounded-12 flex items-center justify-center text-24 text-bg-sand underline font-bold ${seoleimFont.className}`}>
+        className={`w-full h-48 rounded-12 flex items-center justify-center text-24 text-bg-sand underline font-bold`}>
         Signup
       </Link>
     </div>
