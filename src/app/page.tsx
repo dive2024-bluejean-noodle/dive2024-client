@@ -61,7 +61,7 @@ function LandingForm({
       </button>
       <Link
         href={'/signup/select'}
-        className={`w-full h-48 rounded-12 flex items-center justify-center text-24 bg-bg-sand text-white font-bold ${seoleimFont.className}`}>
+        className={`w-full h-48 rounded-12 flex items-center justify-center text-24 text-bg-sand underline font-bold ${seoleimFont.className}`}>
         Signup
       </Link>
     </div>
