@@ -4,8 +4,7 @@ import { seoleimFont } from '@/font/seoleimFont';
 import { useState } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
-
-type TStudentStatus = 'none' | 'international' | 'local';
+import { TStudentStatus } from '@/type/user';
 
 export default function SignupSelectPage() {
   const [tempStatus, setTempStatus] = useState<TStudentStatus>('none');
