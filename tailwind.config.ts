@@ -21,8 +21,8 @@ const config: Config = {
   theme: {
     extend: {
       borderWidth: px0_10,
-      fontSize: px0_100,
-      lineHeight: px0_100,
+      fontSize: px0_200,
+      lineHeight: px0_200,
       minWidth: px0_2000,
       minHeight: px0_2000,
       maxWidth: px0_2000,
@@ -35,6 +35,8 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        "bg-sand": "#fed777",
+        "bg-sea": "#7ebefe",
       },
       screens: {
         xl: { max: "1279px" },

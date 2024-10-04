@@ -13,7 +13,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={``}>{children}</body>
+      <body>
+        <div className={"min-w-400 w-full h-screen mx-auto"}>{children}</div>
+      </body>
     </html>
   );
 }

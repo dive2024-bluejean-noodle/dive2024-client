@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*@fonts-face {*/
+/*  fonts-family: 'seolleimcool-SemiBold';*/
+/*  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2312-1@1.1/seolleimcool-SemiBold.woff2') format('woff2');*/
+/*  fonts-weight: normal;*/
+/*  fonts-style: normal;*/
+/*}*/
+
+/*body {*/
+/*  fonts-family: 'seolleimcool-SemiBold';*/
+/*}*/
