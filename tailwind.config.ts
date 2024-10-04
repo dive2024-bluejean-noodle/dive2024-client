@@ -51,6 +51,7 @@ const config: Config = {
         spring: 'spring 0.3s ease-out forwards',
         fadeIn: 'fadeIn 1s ease-out forwards',
         growUp: 'growUp 1s ease-out forwards',
+        wave: 'wave 2s ease-in-out forwards', // 애니메이션 속도 조절
       },
       keyframes: {
         slideDown: {
@@ -73,6 +74,10 @@ const config: Config = {
         growUp: {
           '0%': { maxHeight: '0%' },
           '100%': { maxHeight: '100%' },
+        },
+        wave: {
+          '0%, 20%': { transform: 'translateY(0)' },
+          '10%': { transform: 'translateY(-10px)' }, // 파도 효과
         },
       },
     },
