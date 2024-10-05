@@ -54,11 +54,11 @@ function RentalHouseCard({
 }) {
   return (
     <article className={"w-full flex flex-col"}>
-      <div
+      <Image
+        alt={"thumbnail"}
+        src={thumbnailList[index % 3]}
         className={"w-full h-120 bg-gray-300 rounded-12 overflow-clip"}
-        id={"recruit-default-thumbnail"}>
-        <Image alt={"thumbnail"} src={thumbnailList[index % 3]} />
-      </div>
+      />
       <div className={"flex flex-col p-8"}>
         <h3 className={"text-18"}>{rentalInfo["MGMT_NM"]}</h3>
         <span className={"text-16 text-text-sub"}>{rentalInfo["GB"]}</span>

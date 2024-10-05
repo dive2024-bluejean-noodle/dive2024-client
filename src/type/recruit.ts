@@ -1,10 +1,16 @@
-export interface IRecruitInfo {
+export interface IRecruitDetailInfo {
   id: string;
   title: string;
   company: string;
   location: string;
   description: string;
-  posted_date: string;
+  ended_date: string;
+}
+
+export interface IRecruitInfo {
+  title: string;
+  company: string;
+  ended_date: string;
 }
 
 export interface IFilterItem {
