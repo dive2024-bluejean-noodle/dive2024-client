@@ -23,12 +23,12 @@ const menuItemList = [
     href: '/main/mentoring',
   },
   {
-    label: 'BUPT',
-    href: '/main/bupt',
-  },
-  {
     label: 'Recruit',
     href: '/main/recruit',
+  },
+  {
+    label: 'Workation',
+    href: '/main/workation',
   },
 ];
 
@@ -36,11 +36,12 @@ function NaviBar() {
   return (
     <nav
       className={
-        'fixed bottom-0 left-0 right-0 h-60 w-screen border-t-2 bg-white'
+        'fixed bottom-0 left-0 right-0 h-60 w-screen border-t-2 bg-bg-default'
       }>
       <div className={'flex justify-around w-full h-full'}>
-        {menuItemList.map((item) => (
+        {menuItemList.map((item, index) => (
           <Link
+            key={index}
             href={item.href}
             className={
               'flex justify-center items-center text-12 w-full h-full border-r-1'

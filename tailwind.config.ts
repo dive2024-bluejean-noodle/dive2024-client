@@ -35,8 +35,12 @@ const config: Config = {
       colors: {
         'background': 'var(--background)',
         'foreground': 'var(--foreground)',
+        'bg-default': '#f8f9fa',
         'bg-sand': '#fed777',
         'bg-sea': '#7ebefe',
+        'star-rating': '#f9390f',
+        'text-title': '#1b1c1d',
+        'text-sub': '#858a8d',
       },
       screens: {
         xl: { max: '1279px' },
