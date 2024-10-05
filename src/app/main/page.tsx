@@ -6,49 +6,23 @@ import BuMeetLogo from '../../../public/icon-192x192.png';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { seoleimFont } from '@/font/seoleimFont';
-
-const questionOptionList = [
-  {
-    label: 'Nearby Restaurant Recommendations',
-    value: 'restaurant',
-  },
-  {
-    label: 'Busan Tourist Spots',
-    value: 'tourist',
-  },
-  {
-    label: 'Metro Line Information',
-    value: 'metro',
-  },
-  {
-    label: 'Metro Convenience Facilities',
-    value: 'convenience',
-  },
-  {
-    label: 'Job Information',
-    value: 'job',
-  },
-] as const;
-
-type TQuestionOption = (typeof questionOptionList)[number]['value'];
-
-interface IQuestionAnswer {
-  description: string;
-  type: 'bupt' | 'me';
-}
+import { useQaListStorage } from '@/app/main/_store/useQaListStorage';
+import { useShallow } from 'zustand/react/shallow';
+import { TQuestionOption } from '@/type/bupt';
+import { questionOptionList } from '@/data/bupt';
 
 export default function BuptPage() {
-  const [questionOption, setQuestionOption] = useState<TQuestionOption | null>(
-    null,
-  );
-  const [qaList, setQaList] = useState<Array<IQuestionAnswer>>([]);
   const [searchInput, setSearchInput] = useState('');
+  const { questionOption, setQuestionOption, qaList, setQaList, reset } =
+    useQaListStorage(useShallow((state) => state));
 
   const selectQuestionOption = (value: TQuestionOption) => {
     setQuestionOption(value);
     setQaList([
       {
-        description: 'Great! What type of restaurant are you looking for?',
+        description:
+          questionOptionList.find((item) => item.value === value)?.question ??
+          questionOptionList[0].question,
         type: 'bupt',
       },
     ]);
@@ -56,10 +30,10 @@ export default function BuptPage() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!questionOption) return;
+    if (!questionOption || !searchInput) return;
 
-    setQaList((prev) => [
-      ...prev,
+    setQaList([
+      ...qaList,
       {
         description: searchInput,
         type: 'me',
@@ -77,9 +51,14 @@ export default function BuptPage() {
     }
   }, [qaList]);
 
+  const handleReset = () => {
+    if (!confirm('Are you adding a chat?')) return;
+    reset();
+  };
+
   return (
     <main className={'h-full'}>
-      <BuptHeader />
+      <BuptHeader onAddChat={handleReset} />
       <section
         className={
           'w-full h-full flex flex-col gap-y-36 pt-72 pb-132 bg-white overflow-y-scroll p-12 py-16 scroll-hidden'
@@ -124,19 +103,23 @@ function SearchBar({
       id={'search-bar'}
       onSubmit={onSubmit}
       className={
-        'px-12 fixed bottom-60 w-full h-60 flex gap-x-8 items-center bg-white'
+        'px-12 fixed bottom-60 w-full h-72 flex gap-x-8 items-center bg-white'
       }>
       <input
         className={
-          'w-full h-48 px-24 text-18 text-black bg-bg-default rounded-full focus:outline-none disabled:opacity-50'
+          'w-full h-48 px-24 text-16 text-black bg-bg-default rounded-full focus:outline-none disabled:opacity-50'
         }
         disabled={disabled}
-        placeholder={"Ask me anything you're curious about."}
+        placeholder={
+          disabled
+            ? 'Please select the above option.'
+            : "Ask me anything you're curious about."
+        }
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
       />
       <button
-        disabled={disabled}
+        disabled={disabled || searchInput?.length < 5}
         type={'submit'}
         className={
           'bg-bg-sea p-16 rounded-full flex items-center justify-center disabled:opacity-50'
@@ -191,7 +174,7 @@ function BuptAnswerTemplate({
           src={BuMeetLogo}
           width={48}
           height={48}
-          className={'rounded-12'}
+          className={'rounded-16'}
           alt={'bupt-profile'}
         />
         <label className={`text-20 ${seoleimFont.className}`}>BuMeet</label>
@@ -207,7 +190,7 @@ function UserQuestionTemplate({ userQuestion }: { userQuestion: string }) {
   return (
     <article className={'flex flex-col gap-y-16'}>
       <div className={'flex items-center gap-x-8'}>
-        <div className={'border-1 w-48 h-48 rounded-12'} />
+        <div className={'border-1 w-48 h-48 rounded-16'} />
         <label className={`text-20 ${seoleimFont.className}`}>Me</label>
       </div>
       <div id={'answer-paragraph'} className={'w-full px-12 text-20'}>
