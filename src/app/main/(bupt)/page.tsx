@@ -12,16 +12,31 @@ import { TQuestionOption } from "@/type/bupt";
 import { questionOptionList } from "@/data/bupt";
 import SideChatListScreen from "@/app/main/(bupt)/_component/SideChatListScreen";
 import useModal from "@/app/_hook/useModal";
+import { postChatQuery } from "@/service/chat";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { CgProfile } from "react-icons/cg";
+import { IoMdWarning } from "react-icons/io";
+import { TypeAnimation } from "react-type-animation";
 
 export default function BuptPage() {
   const [searchInput, setSearchInput] = useState("");
-  const { questionOption, setQuestionOption, qaList, setQaList, reset } =
-    useQaListStorage(useShallow((state) => state));
+  const {
+    questionOption,
+    setQuestionOption,
+    qaList,
+    setQaList,
+    addQaList,
+    reset,
+  } = useQaListStorage(useShallow((state) => state));
   const {
     isModalOpen: isScreenOpen,
     openModal: openScreen,
     closeModal: closeScreen,
   } = useModal();
+  const [buptStatus, setBuptStatus] = useState<
+    "idle" | "loading" | "done" | "error"
+  >("idle");
 
   const selectQuestionOption = (value: TQuestionOption) => {
     setQuestionOption(value);
@@ -35,18 +50,38 @@ export default function BuptPage() {
     ]);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!questionOption || !searchInput) return;
 
-    setQaList([
-      ...qaList,
-      {
-        description: searchInput,
-        type: "me",
-      },
-    ]);
+    setTimeout(() => {
+      setBuptStatus("loading");
+    }, 500);
+
+    addQaList({
+      description: searchInput,
+      type: "me",
+    });
     setSearchInput("");
+    try {
+      const res = await postChatQuery({
+        question: searchInput,
+      });
+      if (res.data.result) {
+        setBuptStatus("done");
+        console.log(res.data.data);
+        addQaList({
+          description: res.data.data.results.generate.generation,
+          type: "bupt",
+        });
+      } else {
+        setBuptStatus("error");
+        alert(res.data.message ?? "AI 응답 중 서버 오류가 발생했습니다!");
+      }
+    } catch (error) {
+      setBuptStatus("error");
+      console.error(error);
+    }
   };
 
   const lastMessageRef = useRef<HTMLDivElement | null>(null);
@@ -83,8 +118,24 @@ export default function BuptPage() {
           item.type === "me" ? (
             <UserQuestionTemplate key={index} userQuestion={item.description} />
           ) : (
-            <BuptAnswerTemplate key={index} buptAnswer={item.description} />
+            <BuptAnswerTemplate
+              key={index}
+              buptAnswer={item.description}
+              isLatest={index === qaList.length - 1}
+            />
           ),
+        )}
+        {buptStatus === "loading" && <BuptLoadingTemplate />}
+        {buptStatus === "error" && (
+          <BuptAnswerTemplate
+            buptAnswer={
+              <span
+                className={"text-red-500 text-16 flex items-center gap-x-4"}>
+                <IoMdWarning size={16} color={"red"} />
+                AI 응답 중 서버 오류가 발생했습니다!
+              </span>
+            }
+          />
         )}
         <div ref={lastMessageRef} />
       </section>
@@ -173,10 +224,16 @@ function BuptQuestionStart({
   );
 }
 
+function BuptLoadingTemplate() {
+  return <BuptAnswerTemplate buptAnswer={<Skeleton count={2} />} />;
+}
+
 function BuptAnswerTemplate({
   buptAnswer,
+  isLatest = false,
 }: {
   buptAnswer: string | JSX.Element;
+  isLatest?: boolean;
 }) {
   return (
     <article className={"flex flex-col gap-y-16"}>
@@ -191,7 +248,16 @@ function BuptAnswerTemplate({
         <label className={`text-20 ${seoleimFont.className}`}>BuMeet</label>
       </div>
       <div id={"paragraph"} className={"w-full px-12 text-20"}>
-        {buptAnswer}
+        {typeof buptAnswer === "string" && isLatest ? (
+          <TypeAnimation
+            sequence={[buptAnswer]}
+            wrapper={"div"}
+            cursor={false}
+            className={"w-full"}
+          />
+        ) : (
+          buptAnswer
+        )}
       </div>
     </article>
   );
@@ -201,7 +267,12 @@ function UserQuestionTemplate({ userQuestion }: { userQuestion: string }) {
   return (
     <article className={"flex flex-col gap-y-16"}>
       <div className={"flex items-center gap-x-8"}>
-        <div className={"border-1 w-48 h-48 rounded-16"} />
+        <div
+          className={
+            "border-1 w-48 h-48 rounded-16 flex items-center justify-center"
+          }>
+          <CgProfile size={36} />
+        </div>
         <label className={`text-20 ${seoleimFont.className}`}>Me</label>
       </div>
       <div id={"answer-paragraph"} className={"w-full px-12 text-20"}>

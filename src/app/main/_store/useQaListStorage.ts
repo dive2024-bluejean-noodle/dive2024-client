@@ -7,6 +7,7 @@ interface IBuptStore {
   setQuestionOption: (value: TQuestionOption) => void;
   qaList: Array<IQuestionAnswer>;
   setQaList: (value: Array<IQuestionAnswer>) => void;
+  addQaList: (value: IQuestionAnswer) => void;
   reset: () => void;
 }
 
@@ -20,6 +21,9 @@ export const useQaListStorage = create(
       qaList: [],
       setQaList: (value) => {
         set({ qaList: value });
+      },
+      addQaList: (value) => {
+        set({ qaList: [...get().qaList, value] });
       },
       reset: () => {
         set({ questionOption: null, qaList: [] });

@@ -1,5 +1,6 @@
 import { IUserInfo } from "@/type/user";
 import { clientAxios } from "@/lib/clientAxios";
+import { IAxiosResponse } from "@/type/axios";
 
 export async function postLoginUser(data: {
   username: string;
@@ -9,7 +10,7 @@ export async function postLoginUser(data: {
 }
 
 export async function postSignupUser(data: IUserInfo) {
-  return clientAxios.post("/user", data);
+  return clientAxios.post<IAxiosResponse<any>>("/user", data);
 }
 
 export async function putUpdateUser(data: {

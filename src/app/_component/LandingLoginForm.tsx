@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { postLoginUser } from "@/service/user";
 
 export default function LandingLoginForm() {
-  const { setUserInfo } = useUserInfoStore();
+  const { userInfo, setUserInfo } = useUserInfoStore();
   const [inputUsername, setInputUsername] = useState("");
   const [inputPw, setInputPw] = useState("");
   const router = useRouter();
@@ -15,39 +15,60 @@ export default function LandingLoginForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // if (!inputUsername || !inputPw) {
-    //   alert(
-    //     "닉네임 또는 비밀번호를 입력해주세요. \n Please input username or password.",
-    //   );
-    //   return;
-    // }
-
-    // const res = await postLoginUser({
-    //   username: inputUsername,
-    //   password: inputPw
-    // })
-    //
-    // console.log(res.data)
-
-    if (
-      inputUsername === mockBusanStudent.username &&
-      inputPw === mockBusanStudent.password
-    ) {
-      setUserInfo(mockBusanStudent);
-      alert("부산 대학생 로그인 성공! \n Success Login");
-      router.push("/busan");
-    } else if (
-      inputUsername === mockInternationalStudent.username &&
-      inputPw === mockInternationalStudent.password
-    ) {
-      setUserInfo(mockInternationalStudent);
-      alert("유학생 로그인 성공! \n Success Login");
-      router.push("/main");
-    } else {
+    if (!inputUsername || !inputPw) {
       alert(
-        `부산 대학생 테스트 계정/비번: ${mockBusanStudent.username}, ${mockBusanStudent.password} \n 유학생 테스트 계정/비번: ${mockInternationalStudent.username}, ${mockInternationalStudent.password}`,
+        "닉네임 또는 비밀번호를 입력해주세요. \n Please input username or password.",
       );
+      return;
     }
+
+    const res = await postLoginUser({
+      username: inputUsername,
+      password: inputPw,
+    });
+
+    if (res.data.result) {
+      alert("로그인 성공! \n Success Login");
+      setUserInfo({
+        first_name: "Min4",
+        last_name: "Kim4",
+        username: inputUsername,
+        password: "1234",
+        email: "kim3@example.com",
+        local: null,
+        id_photo: null,
+        language: "English",
+        nationality: "Korea",
+        is_active: true,
+        visa_number: "000000000",
+        mento: true,
+        age: 26,
+        sex: "Male",
+      });
+    } else {
+      alert(res.data.message ?? "서버 오류가 발생했습니다!");
+    }
+    console.log(res.data);
+
+    // if (
+    //   inputUsername === mockBusanStudent.username &&
+    //   inputPw === mockBusanStudent.password
+    // ) {
+    //   setUserInfo(mockBusanStudent);
+    //   alert("부산 대학생 로그인 성공! \n Success Login");
+    //   router.push("/busan");
+    // } else if (
+    //   inputUsername === mockInternationalStudent.username &&
+    //   inputPw === mockInternationalStudent.password
+    // ) {
+    //   setUserInfo(mockInternationalStudent);
+    //   alert("유학생 로그인 성공! \n Success Login");
+    //   router.push("/main");
+    // } else {
+    //   alert(
+    //     `부산 대학생 테스트 계정/비번: ${mockBusanStudent.username}, ${mockBusanStudent.password} \n 유학생 테스트 계정/비번: ${mockInternationalStudent.username}, ${mockInternationalStudent.password}`,
+    //   );
+    // }
   };
 
   return (

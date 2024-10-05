@@ -2,6 +2,8 @@
 
 import { TStudentStatus } from "@/type/user";
 import { useState } from "react";
+import { postSignupUser } from "@/service/user";
+import { useRouter } from "next/navigation";
 
 export default function SignupRegisterPage({
   searchParams,
@@ -15,10 +17,13 @@ export default function SignupRegisterPage({
     username: "",
     password: "",
     email: "",
+    local: null,
+    id_photo: null,
+    is_active: true,
     language: studentStatus === "international" ? "English" : "Korean",
     nationality: studentStatus === "international" ? "USA" : "Korea",
     visa_number: studentStatus === "international" ? "" : "000000000",
-    mento: true, // 기본값
+    mento: studentStatus !== "international",
     age: 0,
     sex: "Male", // 기본값
   });
@@ -37,6 +42,7 @@ function UserForm({
   formData: any;
   setFormData: any;
 }) {
+  const router = useRouter();
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
@@ -48,9 +54,16 @@ function UserForm({
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
+
+    const res = await postSignupUser(formData);
+    if (res.data.result) {
+      alert("Success Signup");
+      router.push("?step=login");
+    } else {
+      alert(res.data.message);
+    }
   };
 
   return (

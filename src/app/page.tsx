@@ -10,8 +10,12 @@ import LandingLoginForm from "@/app/_component/LandingLoginForm";
 
 type TStep = "landing" | "login";
 
-export default function LandingHome() {
-  const [step, setStep] = useState<TStep>("landing");
+export default function LandingHome({
+  searchParams,
+}: {
+  searchParams: { step?: "login" };
+}) {
+  const [step, setStep] = useState<TStep>(searchParams?.step || "landing");
 
   return (
     <main className={"w-full h-full flex flex-col items-center bg-bg-sea"}>
@@ -34,7 +38,7 @@ export default function LandingHome() {
             step === "landing" ? "translate-x-0" : "-translate-x-1/2"
           }`}
           style={{ width: "200%" }}>
-          <LandingForm setStep={setStep} isVisible={step === "landing"} />
+          <LandingForm setStep={setStep} />
           <LandingLoginForm />
         </div>
       </div>
@@ -42,13 +46,7 @@ export default function LandingHome() {
   );
 }
 
-function LandingForm({
-  setStep,
-  isVisible,
-}: {
-  setStep: (step: TStep) => void;
-  isVisible: boolean;
-}) {
+function LandingForm({ setStep }: { setStep: (step: TStep) => void }) {
   return (
     <div
       className={

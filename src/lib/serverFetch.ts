@@ -49,7 +49,10 @@ class ServerFetch {
 
     try {
       const response = await fetch(fullURL, fetchOptions);
-
+      console.log(response);
+      const data = await response.json();
+      console.log(data);
+      // status가 200이 없으면 Error를 발생
       // if (!response.ok) {
       //   throw new Error(`HTTP error! status: ${response.status}`);
       // }
@@ -57,7 +60,7 @@ class ServerFetch {
       // JSON 응답을 파싱하여 반환
       return {
         result: response.ok,
-        data: (await response.json()) as T,
+        data: data as T,
       };
     } catch (error) {
       console.error("Fetch error:", error);
