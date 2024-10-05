@@ -11,11 +11,17 @@ import { useShallow } from "zustand/react/shallow";
 import { TQuestionOption } from "@/type/bupt";
 import { questionOptionList } from "@/data/bupt";
 import SideChatListScreen from "@/app/main/(bupt)/_component/SideChatListScreen";
+import useModal from "@/app/_hook/useModal";
 
 export default function BuptPage() {
   const [searchInput, setSearchInput] = useState("");
   const { questionOption, setQuestionOption, qaList, setQaList, reset } =
     useQaListStorage(useShallow((state) => state));
+  const {
+    isModalOpen: isScreenOpen,
+    openModal: openScreen,
+    closeModal: closeScreen,
+  } = useModal();
 
   const selectQuestionOption = (value: TQuestionOption) => {
     setQuestionOption(value);
@@ -58,9 +64,12 @@ export default function BuptPage() {
   };
 
   return (
-    <main className={"h-full"}>
-      {/*<SideChatListScreen />*/}
-      <BuptHeader onAddChat={handleReset} />
+    <main className={"h-screen"}>
+      <SideChatListScreen
+        isScreenOpen={isScreenOpen}
+        closeScreen={closeScreen}
+      />
+      <BuptHeader onAddChat={handleReset} openScreen={openScreen} />
       <section
         className={
           "w-full h-full flex flex-col gap-y-36 pt-72 pb-132 bg-white overflow-y-scroll p-12 py-16 scroll-hidden"

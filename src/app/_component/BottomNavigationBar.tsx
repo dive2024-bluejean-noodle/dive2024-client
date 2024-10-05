@@ -13,7 +13,7 @@ export default function BottomNavigationBar() {
   return (
     <nav
       className={
-        "fixed bottom-0 left-0 right-0 h-60 w-screen border-t-2 bg-bg-default"
+        "fixed bottom-0 left-0 right-0 h-60 w-screen border-t-1 bg-white"
       }>
       <div className={"flex justify-around w-full h-full"}>
         {menuItemList.map((item, index) => (
