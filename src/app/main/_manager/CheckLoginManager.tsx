@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useUserInfoStore } from '@/app/_store/useUserInfoStore';
-import { useShallow } from 'zustand/react/shallow';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useUserInfoStore } from "@/app/_store/useUserInfoStore";
+import { useShallow } from "zustand/react/shallow";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function CheckLoginManager() {
   const router = useRouter();
@@ -15,7 +15,7 @@ export default function CheckLoginManager() {
 
   useEffect(() => {
     if (!userInfo.userInfo?.email) {
-      router.push('/');
+      router.push("/");
     }
   }, []);
 

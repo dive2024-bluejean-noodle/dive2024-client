@@ -1,8 +1,8 @@
-import { questionOptionList } from '@/data/bupt';
+import { questionOptionList } from "@/data/bupt";
 
 export interface IQuestionAnswer {
   description: string;
-  type: 'bupt' | 'me';
+  type: "bupt" | "me";
 }
 
-export type TQuestionOption = (typeof questionOptionList)[number]['value'];
+export type TQuestionOption = (typeof questionOptionList)[number]["value"];

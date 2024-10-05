@@ -1,4 +1,4 @@
-export type TStudentStatus = 'none' | 'international' | 'local';
+export type TStudentStatus = "none" | "international" | "local";
 
 export interface IUserInfo {
   first_name: string;
@@ -12,6 +12,7 @@ export interface IUserInfo {
   nationality: string;
   is_active: boolean;
   visa_number: string;
+  mento: boolean;
   age: number;
-  sex: 'Male' | 'Female';
+  sex: "Male" | "Female";
 }

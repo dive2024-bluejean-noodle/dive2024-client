@@ -1,9 +1,9 @@
-import SubHeader from '@/app/_component/SubHeader';
-import { Metadata } from 'next';
+import SubHeader from "@/app/_component/SubHeader";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'BuMeet - Guide',
-  description: 'BuMeet - Guide',
+  title: "BuMeet - Guide",
+  description: "BuMeet - Guide",
 };
 
 export default function GuideLayout({
@@ -13,7 +13,7 @@ export default function GuideLayout({
 }) {
   return (
     <>
-      <SubHeader title={'Guide'} />
+      <SubHeader title={"Guide"} />
       {children}
     </>
   );

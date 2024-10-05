@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { IUserInfo } from '@/type/user';
+import { create } from "zustand";
+import { IUserInfo } from "@/type/user";
 
 interface IUserInfoStore {
   userInfo: IUserInfo | null;

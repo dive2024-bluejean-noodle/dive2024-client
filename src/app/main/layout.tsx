@@ -1,5 +1,5 @@
-import BottomNavigationBar from '@/app/_component/BottomNavigationBar';
-import CheckLoginManager from '@/app/main/_manager/CheckLoginManager';
+import BottomNavigationBar from "@/app/_component/BottomNavigationBar";
+import CheckLoginManager from "@/app/main/_manager/CheckLoginManager";
 
 export default function MainLayout({
   children,
@@ -8,7 +8,7 @@ export default function MainLayout({
 }) {
   return (
     <>
-      <CheckLoginManager />
+      {/*<CheckLoginManager />*/}
       {children}
       <BottomNavigationBar />
     </>

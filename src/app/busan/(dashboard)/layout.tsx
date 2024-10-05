@@ -1,8 +1,8 @@
-import { Metadata } from 'next';
-import DashboardBanner from '@/app/busan/(dashboard)/_component/DashboardBanner';
+import { Metadata } from "next";
+import DashboardBanner from "@/app/busan/(dashboard)/_component/DashboardBanner";
 
 export const metadata: Metadata = {
-  title: 'BuMeet - Mentoring',
+  title: "BuMeet - Mentoring",
 };
 
 export default function BusanDashboardLayout({

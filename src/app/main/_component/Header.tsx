@@ -1,22 +1,25 @@
-import { GiHamburgerMenu } from 'react-icons/gi';
-import { FaPlus } from 'react-icons/fa6';
-import { FaBookmark } from 'react-icons/fa';
+import { GiHamburgerMenu } from "react-icons/gi";
+import { FaPlus } from "react-icons/fa6";
+import { FaBookmark } from "react-icons/fa";
+import { useOpenSideScreenStore } from "@/app/main/(bupt)/_store/useOpenSideScreenStore";
 
 export default function BuptHeader({ onAddChat }: { onAddChat: () => void }) {
+  const { setIsOpenSideScreen } = useOpenSideScreenStore();
+
   return (
     <header
       className={
-        'w-full h-60 flex items-center justify-between fixed top-0 left-0 right-0 bg-white z-[10]'
+        "w-full h-60 flex items-center justify-between fixed top-0 left-0 right-0 bg-white z-[10]"
       }>
-      <button className={'p-16'}>
+      <button className={"p-16"} onClick={() => setIsOpenSideScreen(true)}>
         <GiHamburgerMenu size={24} />
       </button>
-      <h3 className={'font-bold text-24'}>Search for AI</h3>
-      <div className={'flex items-center'}>
-        <button className={'p-16'}>
+      <h3 className={"font-bold text-24"}>Search for AI</h3>
+      <div className={"flex items-center"}>
+        <button className={"p-16"}>
           <FaBookmark size={24} />
         </button>
-        <button className={'p-16'} onClick={onAddChat}>
+        <button className={"p-16"} onClick={onAddChat}>
           <FaPlus size={24} />
         </button>
       </div>

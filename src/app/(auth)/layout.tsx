@@ -3,5 +3,5 @@ export default function AuthLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className={'bg-bg-sea w-screen h-screen'}>{children}</div>;
+  return <div className={"bg-bg-sea w-screen h-screen"}>{children}</div>;
 }
