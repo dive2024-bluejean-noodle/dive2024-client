@@ -1,5 +1,5 @@
 import { IUserInfo } from '@/type/user';
-import { mockInternationalStucent } from '@/data/user';
+import { mockInternationalStudentList } from '@/data/user';
 import { CiStar } from 'react-icons/ci';
 import { seoleimFont } from '@/font/seoleimFont';
 import { FaPlus } from 'react-icons/fa6';
@@ -16,7 +16,7 @@ export default function BusanDashboardPage() {
           </div>
           <p className={'ml-auto'}>
             굉장해요!
-            <br /> 부산 청년 중에서
+            <br /> 부산 대학생 중에서
             <br /> 상위 5%에 속해요!
           </p>
         </div>
@@ -24,7 +24,7 @@ export default function BusanDashboardPage() {
       <section className={'flex flex-col gap-y-16 w-full'}>
         <h2 className={'text-20 text-title'}>지금까지 만난 친구들</h2>
         <div className="w-full overflow-x-auto flex gap-x-8">
-          {mockInternationalStucent.map((stu, index) => (
+          {mockInternationalStudentList.map((stu, index) => (
             <MentiCard key={index} userInfo={stu} />
           ))}
         </div>

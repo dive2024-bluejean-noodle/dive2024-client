@@ -3,7 +3,7 @@
 import { PiMagnifyingGlass } from 'react-icons/pi';
 import { PiBell } from 'react-icons/pi';
 import { IUserInfo } from '@/type/user';
-import { mockBusanStudent } from '@/data/user';
+import { mockBusanStudentList } from '@/data/user';
 import { CiStar } from 'react-icons/ci';
 import { useState } from 'react';
 
@@ -16,7 +16,7 @@ export default function MentoringPage() {
       <section
         id={'mentor-list-section'}
         className={'grid grid-cols-2 w-full p-12 gap-8 '}>
-        {mockBusanStudent
+        {mockBusanStudentList
           .filter((userInfo) =>
             language === 'All' ? true : userInfo.language === language,
           )

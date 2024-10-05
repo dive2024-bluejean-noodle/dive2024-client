@@ -14,7 +14,7 @@ export default function DashboardBanner() {
           className={
             'ml-auto rounded-full text-14 px-8 py-1 bg-[#FDC94A] text-white'
           }>
-          부산청년
+          부산 대학생
         </span>
       </div>
       <p className={'text-15 font-bold'}>멘티를 모아보세요!</p>

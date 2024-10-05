@@ -6,7 +6,7 @@ import Image from 'next/image';
 import BackgroundImage from '../../public/images/landing-bg.jpg';
 import WaveAnimationText from '@/app/_component/WaveAnimationText';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import LandingLoginForm from '@/app/_component/LandingLoginForm';
 
 type TStep = 'landing' | 'login';
 
@@ -35,7 +35,7 @@ export default function LandingHome() {
           }`}
           style={{ width: '200%' }}>
           <LandingForm setStep={setStep} isVisible={step === 'landing'} />
-          <LandingLoginForm setStep={setStep} isVisible={step === 'login'} />
+          <LandingLoginForm />
         </div>
       </div>
     </main>
@@ -52,49 +52,17 @@ function LandingForm({
   return (
     <div
       className={
-        'flex flex-col gap-y-8 items-center p-24 w-[100vw] justify-end'
+        'flex gap-x-16 items-center p-24 w-[100vw] justify-end mt-auto'
       }>
       <button
         onClick={() => setStep('login')}
-        className={`border-2 border-white w-full h-48 rounded-12 flex items-center justify-center text-24 text-white font-bold`}>
+        className={`w-full h-48 rounded-12 flex items-center justify-center text-24 text-white font-lotteriachab`}>
         Login
       </button>
       <Link
         href={'/signup/select'}
-        className={`w-full h-48 rounded-12 flex items-center justify-center text-24 text-bg-sand underline font-bold`}>
+        className={`w-full h-48 rounded-12 flex items-center justify-center text-24 text-white font-lotteriachab`}>
         Signup
-      </Link>
-    </div>
-  );
-}
-
-function LandingLoginForm({
-  setStep,
-  isVisible,
-}: {
-  setStep: (step: TStep) => void;
-  isVisible: boolean;
-}) {
-  return (
-    <div className={'flex flex-col gap-y-8 items-center p-24 w-[100vw]'}>
-      <input
-        type={'text'}
-        placeholder={'ID'}
-        className={
-          'border-2 border-white w-full h-48 rounded-12 px-12 text-18 text-white'
-        }
-      />
-      <input
-        type={'password'}
-        placeholder={'Password'}
-        className={
-          'border-2 border-white w-full h-48 rounded-12 px-12 text-18 text-white'
-        }
-      />
-      <Link
-        href={'/main'}
-        className={`border-2 border-white w-full h-48 rounded-12 flex items-center justify-center text-24 text-white font-bold ${seoleimFont.className}`}>
-        Login
       </Link>
     </div>
   );

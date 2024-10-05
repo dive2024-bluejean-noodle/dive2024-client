@@ -1,11 +1,11 @@
 import { IUserInfo } from '@/type/user';
 
-export const mockInternationalStucent: Array<IUserInfo> = [
+export const mockInternationalStudentList: Array<IUserInfo> = [
   {
     first_name: 'Alice',
     last_name: 'Smith',
-    username: 'alice123',
-    password: 'password1',
+    username: 'alice1',
+    password: '1234',
     email: 'alice@example.com',
     local: null,
     id_photo: null,
@@ -153,7 +153,7 @@ export const mockInternationalStucent: Array<IUserInfo> = [
   },
 ];
 
-export const mockBusanStudent: Array<IUserInfo> = [
+export const mockBusanStudentList: Array<IUserInfo> = [
   {
     first_name: 'Minho',
     last_name: 'Lee',
@@ -305,3 +305,21 @@ export const mockBusanStudent: Array<IUserInfo> = [
     sex: 'Female',
   },
 ];
+
+export const mockInternationalStudent = mockInternationalStudentList[0];
+
+export const mockBusanStudent: IUserInfo = {
+  first_name: '민석',
+  last_name: '김',
+  username: 'KimCookieYa',
+  password: '1234',
+  email: 'kim@example.com',
+  local: '남구',
+  id_photo: null,
+  language: 'English',
+  nationality: 'Korea',
+  is_active: true,
+  visa_number: '000000000',
+  age: 26,
+  sex: 'Male',
+} as const;

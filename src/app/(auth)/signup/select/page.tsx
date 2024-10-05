@@ -24,7 +24,7 @@ export default function SignupSelectPage() {
     <main className={'flex flex-col h-full relative'}>
       <div className={'flex flex-col h-full'}>
         <button
-          className={`z-10 w-full flex justify-center items-center text-center font-bold text-white  ${seoleimFont.className} transition-all duration-500 ${tempStatus === 'international' ? 'h-3/4 text-60' : tempStatus === 'none' ? 'h-full text-48 ' : 'h-1/4 text-48 text-gray-400'}`}
+          className={`z-10 w-full flex justify-center items-center text-center font-bold text-white   transition-all duration-500 ${tempStatus === 'international' ? 'h-3/4 text-60' : tempStatus === 'none' ? 'h-full text-48 ' : 'h-1/4 text-48 text-gray-400'}`}
           onClick={() => toggleStatus('international')}>
           {tempStatus === 'international' ? (
             <span>
@@ -43,13 +43,13 @@ export default function SignupSelectPage() {
         </button>
         <hr className={'h-12 bg-bg-sand w-full'} />
         <p
-          className={`absolute top-0 bottom-0 left-0 right-0 m-auto w-full h-full flex justify-start items-center text-bg-sand font-bold text-72 ${tempStatus === 'none' ? '' : 'hidden'}`}>
+          className={`absolute w-full top-0 bottom-0 left-0 right-0 m-auto  h-full flex justify-start items-center text-bg-sand font-bold text-72 ${seoleimFont.className} ${tempStatus === 'none' ? '' : 'hidden'}`}>
           Who are
           <br />
-          you?
+          <span className={'ml-auto bg-bg-sea pl-12'}>you?</span>
         </p>
         <button
-          className={`z-10 w-full flex justify-center items-center text-center font-bold text-white text-48 ${seoleimFont.className} transition-all duration-500 ${tempStatus === 'local' ? 'h-3/4 text-60' : tempStatus === 'none' ? 'h-full text-48 ' : 'h-1/4 text-48 text-gray-400'}`}
+          className={`z-10 w-full flex justify-center items-center text-center font-bold text-white text-48 transition-all duration-500 ${tempStatus === 'local' ? 'h-3/4 text-60' : tempStatus === 'none' ? 'h-full text-48 ' : 'h-1/4 text-48 text-gray-400'}`}
           onClick={() => toggleStatus('local')}>
           {tempStatus === 'local' ? (
             <span>
