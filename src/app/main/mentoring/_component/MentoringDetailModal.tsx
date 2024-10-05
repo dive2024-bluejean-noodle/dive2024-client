@@ -3,10 +3,15 @@
 import { IMentoringDetail } from "@/type/mentoring";
 import Modal from "@/app/_component/Modal";
 import { seoleimFont } from "@/font/seoleimFont";
-import { patchMentoringApplication } from "@/service/mentoring";
+import {
+  patchMentoringApplication,
+  postMentoringComment,
+} from "@/service/mentoring";
 import { useUserInfoStore } from "@/app/_store/useUserInfoStore";
 import { useShallow } from "zustand/react/shallow";
 import { useRouter } from "next/navigation";
+import { IoMdSend } from "react-icons/io";
+import { useState } from "react";
 
 export default function MentoringDetailModal({
   mentoringId,
@@ -73,7 +78,7 @@ export default function MentoringDetailModal({
           <h3 className={"text-16 mb-16"}>Comments</h3>
           <ul
             className={
-              "flex flex-col h-400 overflow-y-auto scroll-hidden border-1 rounded-12 p-8"
+              "flex flex-col h-400 overflow-y-auto scroll-hidden border-t-1 border-x-1 rounded-t-12 p-8"
             }>
             {mentoringDetail?.comments &&
             mentoringDetail.comments.length > 0 ? (
@@ -93,6 +98,7 @@ export default function MentoringDetailModal({
               </p>
             )}
           </ul>
+          <CommentInput />
         </div>
         <button
           onClick={handleRegisterMentoring}
@@ -123,6 +129,49 @@ function InfoItem({
           value
         )}
       </span>
+    </div>
+  );
+}
+
+function CommentInput() {
+  const [comment, setComment] = useState("");
+  const postComment = async () => {
+    if (!comment) {
+      alert("Comment can't be empty!");
+      return;
+    }
+    const res = await postMentoringComment({
+      matchingId: 1,
+      contents: "test",
+      writer: 1,
+    });
+
+    if (res.data.result) {
+      alert("Success Comment Register!");
+    } else {
+      alert(res.data.message ?? "멘토링 댓글 작성 중에 실패했습니다!");
+    }
+  };
+
+  return (
+    <div
+      id={"comment-input"}
+      className={
+        "flex w-full gap-x-4 items-center border-x-1 border-b-1 rounded-b-12 border-t-1 overflow-clip"
+      }>
+      <input
+        className={
+          "w-full h-fit min-h-36 px-12 text-14 text-black focus:outline-none"
+        }
+        placeholder={"Ask me anything you're curious about."}
+        value={comment}
+        onChange={(e) => setComment(e.target.value)}
+      />
+      <button
+        className={"p-8 m-4 rounded-full border-1 border-black"}
+        onClick={postComment}>
+        <IoMdSend size={16} />
+      </button>
     </div>
   );
 }

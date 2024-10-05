@@ -1,9 +1,10 @@
 import { getIronSession, SessionOptions } from "iron-session";
 import { cookies } from "next/headers";
+import { IUserInfo } from "@/type/user";
 
 export interface ISessionData {
   token: string;
-  username: string;
+  userInfo: IUserInfo;
 }
 
 export async function getIronSessionData() {

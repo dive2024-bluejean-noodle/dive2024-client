@@ -1,17 +1,16 @@
-"use client";
-
 import { FaPlus } from "react-icons/fa6";
 import { postCreateMentoring } from "@/service/mentoring";
 
 export default function CreateMentoringFAB() {
   const createMentoring = async () => {
     const res = await postCreateMentoring({
-      mento: 11,
       title: "멘토링 테스트2",
       location: "Busan",
       match: false,
     });
-    console.log(res.data);
+    if (res.data.result) {
+      alert("멘토링이 생성되었습니다.");
+    }
   };
 
   return (

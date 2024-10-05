@@ -5,7 +5,7 @@ import { postLogout } from "@/service/user";
 
 export default function LogoutFAB() {
   const handleLogout = async () => {
-    if (!confirm("로그아웃하시나요?")) return;
+    if (!confirm("로그아웃하시나요? \n Do you want to log out?")) return;
     const res = await postLogout();
     if (res.data.result) {
       location.href = "/";

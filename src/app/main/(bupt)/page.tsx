@@ -94,7 +94,8 @@ export default function BuptPage() {
   }, [qaList]);
 
   const handleReset = () => {
-    if (!confirm("Are you adding a chat?")) return;
+    if (!confirm("새 채팅을 시작하시겠나요? \n Are you adding a new chat?"))
+      return;
     reset();
   };
 

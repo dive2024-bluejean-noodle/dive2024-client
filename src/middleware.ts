@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getIronSession } from "iron-session";
 import { getIronSessionData } from "@/lib/ironSession";
 
 export const config = {
@@ -32,9 +31,13 @@ export async function middleware(request: NextRequest) {
     request.nextUrl.pathname.startsWith("/signup")
   ) {
     const session = await getIronSessionData();
-    const token = session.token;
+    const { token, userInfo } = session;
+
     if (token) {
-      return NextResponse.redirect(new URL("/wiki", request.url));
+      if (userInfo?.mento) {
+        return NextResponse.redirect(new URL("/busan", request.url));
+      }
+      return NextResponse.redirect(new URL("/main", request.url));
     }
   }
 

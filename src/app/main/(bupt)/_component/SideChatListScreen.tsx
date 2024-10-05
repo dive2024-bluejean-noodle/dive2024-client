@@ -3,6 +3,7 @@
 import Modal from "@/app/_component/Modal";
 import { IoMdClose } from "react-icons/io";
 import { seoleimFont } from "@/font/seoleimFont";
+import { postLogout } from "@/service/user";
 
 export default function SideChatListScreen({
   isScreenOpen,
@@ -17,6 +18,17 @@ export default function SideChatListScreen({
     "I need a hambuger.",
     "Is there a bathroom in the nearby station?",
   ];
+
+  const handleLogout = async () => {
+    if (!confirm("로그아웃하시나요? \n Do you want to log out?")) return;
+    const res = await postLogout();
+    if (res.data.result) {
+      location.href = "/";
+    } else {
+      alert(res.data.message ?? "로그아웃 중 서버 오류가 발생했습니다!");
+    }
+  };
+
   return (
     <Modal isOpen={isScreenOpen} onClose={closeScreen}>
       <section
@@ -44,6 +56,9 @@ export default function SideChatListScreen({
             ))}
           </ul>
         </div>
+        <button className={""} onClick={handleLogout}>
+          Logout
+        </button>
       </section>
     </Modal>
   );

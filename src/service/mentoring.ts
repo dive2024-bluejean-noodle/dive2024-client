@@ -4,7 +4,6 @@ import { IAxiosResponse } from "@/type/axios";
 
 // 멘토링 생성
 export async function postCreateMentoring(data: {
-  mento: number;
   title: string;
   location: string;
   match: boolean;
