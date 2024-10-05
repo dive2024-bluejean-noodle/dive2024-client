@@ -15,5 +15,7 @@ export const POST = withErrorHandling(async (req) => {
     await session.save();
   }
 
-  return NextResponse.json(response);
+  return NextResponse.json({
+    result: true,
+  });
 });

@@ -16,9 +16,6 @@ export async function getIronSessionData() {
     const session = await getIronSession<ISessionData>(cookies(), {
       password: process.env.NEXT_PUBLIC_SESSION_PW as string,
       cookieName: "bu-meet-login-cookie",
-      cookieOptions: {
-        secure: true,
-      },
     });
     return session;
   } catch (error) {
