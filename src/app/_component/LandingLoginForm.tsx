@@ -2,12 +2,11 @@
 
 import { useUserInfoStore } from "@/app/_store/useUserInfoStore";
 import { useState } from "react";
-import { mockBusanStudent, mockInternationalStudent } from "@/data/user";
 import { useRouter } from "next/navigation";
-import { postLoginUser } from "@/service/user";
+import { getUserInfo, postLoginUser } from "@/service/user";
 
 export default function LandingLoginForm() {
-  const { userInfo, setUserInfo } = useUserInfoStore();
+  const { setUserInfo } = useUserInfoStore();
   const [inputUsername, setInputUsername] = useState("");
   const [inputPw, setInputPw] = useState("");
   const router = useRouter();
@@ -29,26 +28,20 @@ export default function LandingLoginForm() {
 
     if (res.data.result) {
       alert("로그인 성공! \n Success Login");
-      setUserInfo({
-        first_name: "Min4",
-        last_name: "Kim4",
-        username: inputUsername,
-        password: "1234",
-        email: "kim3@example.com",
-        local: null,
-        id_photo: null,
-        language: "English",
-        nationality: "Korea",
-        is_active: true,
-        visa_number: "000000000",
-        mento: true,
-        age: 26,
-        sex: "Male",
-      });
+      const res2 = await getUserInfo();
+      if (res2.data.result) {
+        setUserInfo(res2.data.data);
+        if (res2.data.data.mento) {
+          router.push("/busan");
+        } else {
+          router.push("/main");
+        }
+      } else {
+        alert(res2.data.message ?? "로그인 중 서버 오류가 발생했습니다!");
+      }
     } else {
-      alert(res.data.message ?? "서버 오류가 발생했습니다!");
+      alert(res.data.message ?? "로그인에서 서버 오류가 발생했습니다!");
     }
-    console.log(res.data);
 
     // if (
     //   inputUsername === mockBusanStudent.username &&

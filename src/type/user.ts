@@ -16,3 +16,8 @@ export interface IUserInfo {
   age: number;
   sex: "Male" | "Female";
 }
+
+export interface ILogin {
+  access: string;
+  refresh: string;
+}

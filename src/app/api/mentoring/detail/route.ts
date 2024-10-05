@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import withErrorHandling from "@/lib/withErrorHandling";
-import { serverAxios } from "@/lib/serverAxios";
 import serverFetch from "@/lib/serverFetch";
+import { getIronSessionData } from "@/lib/ironSession";
 
 export const GET = withErrorHandling(async (req) => {
   const searchParams = req.nextUrl.searchParams;
@@ -10,7 +10,10 @@ export const GET = withErrorHandling(async (req) => {
   if (!pk) {
     throw new Error("No pk provided");
   }
-  const response = await serverFetch.get(`/Mentoring/match/${pk}`);
+  const { token } = await getIronSessionData();
+  const response = await serverFetch.get(`/Mentoring/match/${pk}`, {
+    Authorization: `Bearer ${token}`,
+  });
   console.log(response.data);
   return NextResponse.json(response);
 });

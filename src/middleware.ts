@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getIronSession } from "iron-session";
+import { getIronSessionData } from "@/lib/ironSession";
 
 export const config = {
   matcher: [
@@ -13,6 +15,28 @@ export const config = {
   ],
 };
 
-export function middleware(req: NextRequest) {
+export async function middleware(request: NextRequest) {
+  if (
+    request.nextUrl.pathname.startsWith("/main") ||
+    request.nextUrl.pathname.startsWith("/busan")
+  ) {
+    const session = await getIronSessionData();
+    const token = session.token;
+    if (!token) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+  }
+
+  if (
+    request.nextUrl.pathname === "/login" ||
+    request.nextUrl.pathname.startsWith("/signup")
+  ) {
+    const session = await getIronSessionData();
+    const token = session.token;
+    if (token) {
+      return NextResponse.redirect(new URL("/wiki", request.url));
+    }
+  }
+
   return NextResponse.next();
 }

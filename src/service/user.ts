@@ -2,6 +2,14 @@ import { IUserInfo } from "@/type/user";
 import { clientAxios } from "@/lib/clientAxios";
 import { IAxiosResponse } from "@/type/axios";
 
+export async function getUserInfo() {
+  return clientAxios.get<IAxiosResponse<IUserInfo>>("/user");
+}
+
+export async function postLogout() {
+  return clientAxios.post("/user/logout");
+}
+
 export async function postLoginUser(data: {
   username: string;
   password: string;

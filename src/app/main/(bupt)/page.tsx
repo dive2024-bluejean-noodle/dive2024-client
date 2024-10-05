@@ -107,7 +107,7 @@ export default function BuptPage() {
       <BuptHeader onAddChat={handleReset} openScreen={openScreen} />
       <section
         className={
-          "w-full h-full flex flex-col gap-y-36 pt-72 pb-132 bg-white overflow-y-scroll p-12 py-16 scroll-hidden"
+          "w-full h-full flex flex-col gap-y-24 pt-72 pb-132 bg-white overflow-y-scroll p-12 py-16 scroll-hidden"
         }>
         <BuptQuestionStart
           disabled={questionOption !== null}
@@ -125,7 +125,7 @@ export default function BuptPage() {
             />
           ),
         )}
-        {buptStatus === "loading" && <BuptLoadingTemplate />}
+
         {buptStatus === "error" && (
           <BuptAnswerTemplate
             buptAnswer={
@@ -137,7 +137,10 @@ export default function BuptPage() {
             }
           />
         )}
-        <div ref={lastMessageRef} />
+        <div>
+          {buptStatus === "loading" && <BuptLoadingTemplate />}
+          <div ref={lastMessageRef} />
+        </div>
       </section>
       <SearchBar
         disabled={questionOption === null}
@@ -169,7 +172,7 @@ function SearchBar({
       }>
       <input
         className={
-          "w-full h-48 px-24 text-16 text-black bg-bg-default rounded-full focus:outline-none disabled:opacity-50"
+          "w-full h-fit min-h-48 px-24 text-16 text-black bg-bg-default rounded-full focus:outline-none disabled:opacity-50"
         }
         disabled={disabled}
         placeholder={

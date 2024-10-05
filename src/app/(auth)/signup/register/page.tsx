@@ -60,7 +60,7 @@ function UserForm({
     const res = await postSignupUser(formData);
     if (res.data.result) {
       alert("Success Signup");
-      router.push("?step=login");
+      router.push("/?step=login");
     } else {
       alert(res.data.message);
     }
