@@ -3,15 +3,15 @@ import { HiOutlineChevronRight } from "react-icons/hi";
 import Image from "next/image";
 import BuMeetLogo from "../../../../../public/icon-192x192.png";
 
-export default function MentoringBanner() {
+export default function RecruitBanner() {
   return (
     <section
       id="banner"
       className={
         "w-full h-180 p-24 flex flex-col text-white relative bg-[#B5D9FE]"
       }>
-      <h2 className={"font-bold text-24"}>Mentoring</h2>
-      <p className={"text-15"}>Find the right mentor for you.</p>
+      <h2 className={"font-bold text-24"}>Recruit</h2>
+      <p className={"text-15"}>Find the right job for you.</p>
       <div className={"flex w-full items-center mt-24"}>
         <div className={"flex flex-col gap-y-4"}>
           <Link
