@@ -1,26 +1,18 @@
 import { IMenu } from '@/type/menu';
 import BottomNavigationBar from '@/app/_component/BottomNavigationBar';
 
-export default function MainLayout({
+export default function BusanLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const menuItemList: Array<IMenu> = [
     {
-      label: 'Home',
-      href: '/main',
+      label: '멘토링',
+      href: '/busan/mentoring',
     },
     {
-      label: 'Mentoring',
-      href: '/main/mentoring',
-    },
-    {
-      label: 'Recruit',
-      href: '/main/recruit',
-    },
-    {
-      label: 'Workation',
+      label: '워케이션',
       href: '/main/workation',
     },
   ];

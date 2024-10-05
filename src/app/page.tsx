@@ -25,12 +25,12 @@ export default function LandingHome() {
         src={BackgroundImage}
         width={400}
         height={360}
-        className={'w-screen absolute top-0 bottom-0 m-auto'}
+        className={'w-screen absolute top-0 bottom-0 m-auto p-24'}
       />
       <div className="overflow-hidden w-full mt-auto">
         {/* 캐러셀을 감싸는 컨테이너 */}
         <div
-          className={`flex transition-transform duration-500 ease-in-out transform ${
+          className={`flex w-full justify-center transition-transform duration-500 ease-in-out transform ${
             step === 'landing' ? 'translate-x-0' : '-translate-x-1/2'
           }`}
           style={{ width: '200%' }}>
@@ -52,7 +52,7 @@ function LandingForm({
   return (
     <div
       className={
-        'flex flex-col gap-y-8 items-center px-48 py-48 w-full justify-end'
+        'flex flex-col gap-y-8 items-center p-24 w-[100vw] justify-end'
       }>
       <button
         onClick={() => setStep('login')}
@@ -76,19 +76,19 @@ function LandingLoginForm({
   isVisible: boolean;
 }) {
   return (
-    <div className={'flex flex-col gap-y-8 items-center px-48 py-48 w-full'}>
+    <div className={'flex flex-col gap-y-8 items-center p-24 w-[100vw]'}>
       <input
         type={'text'}
         placeholder={'ID'}
         className={
-          'border-2 border-white w-full h-48 rounded-12 px-12 text-24 text-white font-bold'
+          'border-2 border-white w-full h-48 rounded-12 px-12 text-18 text-white'
         }
       />
       <input
         type={'password'}
         placeholder={'Password'}
         className={
-          'border-2 border-white w-full h-48 rounded-12 px-12 text-24 text-white font-bold'
+          'border-2 border-white w-full h-48 rounded-12 px-12 text-18 text-white'
         }
       />
       <Link

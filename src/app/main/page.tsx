@@ -70,7 +70,7 @@ export default function BuptPage() {
       <BuptHeader />
       <section
         className={
-          'w-full h-full flex flex-col gap-y-36 mt-60 mb-120 bg-gray-100 overflow-y-auto p-12 py-16 scroll-hidden'
+          'w-full h-full flex flex-col gap-y-36 pt-72 pb-132 bg-gray-100 overflow-y-scroll p-12 py-16 scroll-hidden'
         }>
         <BuptQuestionStart
           questionOption={questionOption}

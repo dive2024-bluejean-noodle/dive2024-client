@@ -11,11 +11,11 @@ export default function MentoringPage() {
   const [language, setLanguage] = useState('English');
 
   return (
-    <main className={'bg-bg-default h-full'}>
+    <main className={'min-h-[calc(100%-240px)]'}>
       <FilteringHeader language={language} setLanguage={setLanguage} />
       <section
         id={'mentor-list-section'}
-        className={'grid grid-cols-2 w-full p-12 gap-8 h-full'}>
+        className={'grid grid-cols-2 w-full p-12 gap-8 '}>
         {mockBusanStudent
           .filter((userInfo) =>
             language === 'All' ? true : userInfo.language === language,

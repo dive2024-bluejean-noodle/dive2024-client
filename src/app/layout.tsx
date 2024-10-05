@@ -14,7 +14,10 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <div className={'max-w-440 w-full h-[100vh] mx-auto relative'}>
+        <div
+          className={
+            'max-w-440 w-full h-screen mx-auto relative bg-bg-default'
+          }>
           {children}
         </div>
       </body>
