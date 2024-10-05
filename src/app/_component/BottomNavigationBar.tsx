@@ -1,11 +1,15 @@
-import { IMenu } from '@/type/menu';
-import Link from 'next/link';
+'use client';
 
-export default function BottomNavigationBar({
-  menuItemList,
-}: {
-  menuItemList: Array<IMenu>;
-}) {
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { busanMenuItemList, mainMenuItemList } from '@/data/menu';
+
+export default function BottomNavigationBar() {
+  const pathname = usePathname();
+  const menuItemList = pathname.startsWith('/main')
+    ? mainMenuItemList
+    : busanMenuItemList;
+
   return (
     <nav
       className={
@@ -16,10 +20,9 @@ export default function BottomNavigationBar({
           <Link
             key={index}
             href={item.href}
-            className={
-              'flex justify-center items-center text-12 w-full h-full'
-            }>
-            {item.label}
+            className={`flex flex-col justify-center items-center text-12 w-full h-full ${pathname === item.href ? 'font-bold bg-bg-default shadow-inner' : ''} `}>
+            <item.icon size={16} />
+            <label>{item.label}</label>
           </Link>
         ))}
       </div>
