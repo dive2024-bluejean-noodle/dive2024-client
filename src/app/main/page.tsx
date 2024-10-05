@@ -4,7 +4,8 @@ import { FaMagnifyingGlass } from 'react-icons/fa6';
 import BuptHeader from '@/app/main/_component/Header';
 import BuMeetLogo from '../../../public/icon-192x192.png';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { seoleimFont } from '@/font/seoleimFont';
 
 const questionOptionList = [
   {
@@ -65,6 +66,15 @@ export default function BuptPage() {
     setSearchInput('');
   };
 
+  const lastMessageRef = useRef<HTMLDivElement | null>(null);
+
+  // qaList가 업데이트될 때마다 마지막 아이템으로 스크롤
+  useEffect(() => {
+    if (lastMessageRef.current) {
+      lastMessageRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [qaList]);
+
   return (
     <main className={'h-full'}>
       <BuptHeader />
@@ -83,6 +93,7 @@ export default function BuptPage() {
             <BuptAnswerTemplate key={index} buptAnswer={item.description} />
           ),
         )}
+        <div ref={lastMessageRef} />
       </section>
       <SearchBar
         searchInput={searchInput}
@@ -170,7 +181,7 @@ function BuptAnswerTemplate({
           className={'rounded-12'}
           alt={'bupt-profile'}
         />
-        <label className={'text-24'}>BuMeet</label>
+        <label className={`text-20 ${seoleimFont.className}`}>BuMeet</label>
       </div>
       <div id={'paragraph'} className={'w-full px-12 text-20'}>
         {buptAnswer}
@@ -184,7 +195,7 @@ function UserQuestionTemplate({ userQuestion }: { userQuestion: string }) {
     <article className={'flex flex-col gap-y-16'}>
       <div className={'flex items-center gap-x-8'}>
         <div className={'border-1 w-48 h-48 rounded-12'} />
-        <label className={'text-24'}>Me</label>
+        <label className={`text-20 ${seoleimFont.className}`}>Me</label>
       </div>
       <div id={'answer-paragraph'} className={'w-full px-12 text-20'}>
         {userQuestion}
