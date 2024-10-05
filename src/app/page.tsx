@@ -56,12 +56,12 @@ function LandingForm({
       }>
       <button
         onClick={() => setStep("login")}
-        className={`w-full h-48 rounded-12 flex items-center justify-center text-24 text-white font-lotteriachab`}>
+        className={`w-full h-48 rounded-12 flex items-center justify-center text-24 text-white font-hsan-tokki`}>
         Login
       </button>
       <Link
         href={"/signup/select"}
-        className={`w-full h-48 rounded-12 flex items-center justify-center text-24 text-white font-lotteriachab`}>
+        className={`w-full h-48 rounded-12 flex items-center justify-center text-24 text-white font-hsan-tokki`}>
         Signup
       </Link>
     </div>

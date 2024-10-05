@@ -15,12 +15,12 @@ export default function LandingLoginForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!inputUsername || !inputPw) {
-      alert(
-        "닉네임 또는 비밀번호를 입력해주세요. \n Please input username or password.",
-      );
-      return;
-    }
+    // if (!inputUsername || !inputPw) {
+    //   alert(
+    //     "닉네임 또는 비밀번호를 입력해주세요. \n Please input username or password.",
+    //   );
+    //   return;
+    // }
 
     // const res = await postLoginUser({
     //   username: inputUsername,
@@ -30,14 +30,14 @@ export default function LandingLoginForm() {
     // console.log(res.data)
 
     if (
-      inputUsername === mockBusanStudent.email &&
+      inputUsername === mockBusanStudent.username &&
       inputPw === mockBusanStudent.password
     ) {
       setUserInfo(mockBusanStudent);
       alert("부산 대학생 로그인 성공! \n Success Login");
       router.push("/busan");
     } else if (
-      inputUsername === mockInternationalStudent.email &&
+      inputUsername === mockInternationalStudent.username &&
       inputPw === mockInternationalStudent.password
     ) {
       setUserInfo(mockInternationalStudent);
@@ -45,7 +45,7 @@ export default function LandingLoginForm() {
       router.push("/main");
     } else {
       alert(
-        `부산 대학생 테스트 계정/비번: ${mockBusanStudent.email}, ${mockBusanStudent.password} \n 유학생 테스트 계정/비번: ${mockInternationalStudent.email}, ${mockInternationalStudent.password}`,
+        `부산 대학생 테스트 계정/비번: ${mockBusanStudent.username}, ${mockBusanStudent.password} \n 유학생 테스트 계정/비번: ${mockInternationalStudent.username}, ${mockInternationalStudent.password}`,
       );
     }
   };
@@ -74,7 +74,7 @@ export default function LandingLoginForm() {
       />
       <button
         type={"submit"}
-        className={`font-lotteriachab w-full h-48 rounded-12 flex items-center justify-center text-24 text-white font-bold`}>
+        className={`font-hsan-tokki w-full h-48 rounded-12 flex items-center justify-center text-24 text-white font-bold`}>
         Login
       </button>
     </form>

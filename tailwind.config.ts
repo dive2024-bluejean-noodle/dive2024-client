@@ -38,6 +38,7 @@ const config: Config = {
         "bg-default": "#f8f9fa",
         "bg-sand": "#fed777",
         "bg-sea": "#7ebefe",
+        "bg-lightgreen": "#E1FDF4",
         "star-rating": "#f9390f",
         "text-title": "#1b1c1d",
         "text-sub": "#858a8d",

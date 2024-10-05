@@ -3,11 +3,12 @@ import { mockInternationalStudentList } from "@/data/user";
 import { CiStar } from "react-icons/ci";
 import { seoleimFont } from "@/font/seoleimFont";
 import CreateMentoringFAB from "@/app/busan/(dashboard)/_component/CreateMentoringFAB";
+import LogoutFAB from "@/app/busan/(dashboard)/_component/LogoutFAB";
 
 export default function BusanDashboardPage() {
   return (
-    <main className={"flex flex-col gap-y-24 p-24 w-full"}>
-      <section className={"flex flex-col gap-y-16 w-full"}>
+    <main className={"flex flex-col gap-y-24 p-24 w-full relative"}>
+      <section className={"flex flex-col gap-y-12 w-full"}>
         <h2 className={"text-20 text-title"}>나의 멘토링 평점</h2>
         <div className="w-full overflow-x-auto flex border-1 rounded-12 h-120 bg-white items-center p-24 overflow-hidden">
           <div
@@ -21,7 +22,7 @@ export default function BusanDashboardPage() {
           </p>
         </div>
       </section>
-      <section className={"flex flex-col gap-y-16 w-full"}>
+      <section className={"flex flex-col gap-y-12 w-full"}>
         <h2 className={"text-20 text-title"}>지금까지 만난 친구들</h2>
         <div className="w-full overflow-x-auto flex gap-x-8">
           {mockInternationalStudentList.map((stu, index) => (
@@ -29,6 +30,7 @@ export default function BusanDashboardPage() {
           ))}
         </div>
       </section>
+      <LogoutFAB />
       <CreateMentoringFAB />
     </main>
   );

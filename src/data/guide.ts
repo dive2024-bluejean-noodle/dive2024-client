@@ -19,7 +19,13 @@ export const buMeetGuideList: Array<IGuide> = [
     id: 2,
     title: "There's nothing more to write about",
     content: "blablablablabl",
-
     createdAt: "2024-10-06",
+  },
+  {
+    id: 3,
+    title: '"Rental Housing" revised in 2028',
+    content:
+      "Currently, foreign students in Busan face restrictions that prevent them from residing in rental housing. This regulation has made it difficult for international students to find affordable and convenient living options while studying in the city. However, these restrictions are set to be revised in 2028, providing more opportunities for foreign students to access rental housing. The planned amendment aims to improve housing accessibility and enhance the overall experience for international students living in Busan, allowing them to better integrate into the local community.",
+    createdAt: "2028-10-06",
   },
 ];
