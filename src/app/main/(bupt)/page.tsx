@@ -2,7 +2,7 @@
 
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import BuptHeader from '@/app/main/_component/Header';
-import BuMeetLogo from '../../../public/icon-192x192.png';
+import BuMeetLogo from '../../../../public/icon-192x192.png';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { seoleimFont } from '@/font/seoleimFont';

@@ -8,12 +8,12 @@ export default function BusanLayout({
 }) {
   const menuItemList: Array<IMenu> = [
     {
-      label: '멘토링',
-      href: '/busan/mentoring',
+      label: '대시보드',
+      href: '/busan',
     },
     {
-      label: '워케이션',
-      href: '/main/workation',
+      label: '채팅',
+      href: '/busan/chat',
     },
   ];
 

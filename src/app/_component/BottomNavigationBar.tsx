@@ -17,7 +17,7 @@ export default function BottomNavigationBar({
             key={index}
             href={item.href}
             className={
-              'flex justify-center items-center text-12 w-full h-full border-r-1'
+              'flex justify-center items-center text-12 w-full h-full'
             }>
             {item.label}
           </Link>

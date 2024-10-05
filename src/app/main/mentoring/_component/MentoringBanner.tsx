@@ -13,9 +13,9 @@ export default function MentoringBanner() {
       <h2 className={'font-bold text-24'}>Mentoring</h2>
       <p className={'text-15'}>Find the right mentor for you.</p>
       <div className={'flex w-full items-center mt-24'}>
-        <div className={'flex flex-col gap-y-8'}>
+        <div className={'flex flex-col gap-y-4'}>
           <Link
-            href={'/main/mentoring/guide'}
+            href={'/guide'}
             className={
               'underline text-blue-600 text-16 flex gap-x-0 items-center'
             }>
