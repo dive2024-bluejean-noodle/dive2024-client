@@ -1,36 +1,68 @@
-import { mockRecruitInfoList } from "@/data/recruit";
-import { IRecruitInfo } from "@/type/recruit";
+"use client";
+
+import { useEffect, useState } from "react";
+import { getRentalHouseList } from "@/service/rental";
+import { IRentalInfo } from "@/type/rental";
+import Image from "next/image";
+import RentalHouseImage1 from "../../../../public/images/rental-house-1.jpg";
+import RentalHouseImage2 from "../../../../public/images/rental-house-2.jpeg";
+import RentalHouseImage3 from "../../../../public/images/rental-house-3.jpeg";
+
+const thumbnailList = [RentalHouseImage1, RentalHouseImage2, RentalHouseImage3];
 
 export default function RentalPage() {
+  const [rentalHouseList, setRentalHouseList] = useState<Array<IRentalInfo>>(
+    [],
+  );
+
+  useEffect(() => {
+    (async () => {
+      const res = await getRentalHouseList(10);
+      if (res.data.result) {
+        setRentalHouseList(res.data.data.data.response.body.items.item);
+      } else {
+        alert(res.data.message ?? "데이터 조회 중 서버 오류가 발생했습니다!");
+      }
+    })();
+  }, []);
+
   return (
     <main className={"min-h-[calc(100%-240px)]"}>
       <section
-        id={"recruit-list-section"}
+        id={"rental-list-section"}
         className={
           "grid grid-cols-2 w-full p-12 gap-8 overflow-y-auto scroll-hidden"
         }>
-        {mockRecruitInfoList.map((recruitInfo, index) => (
-          <RecruitCard key={index} recruitInfo={recruitInfo} />
+        {rentalHouseList.map((rentalInfo, index) => (
+          <RentalHouseCard
+            key={rentalInfo.CNT}
+            rentalInfo={rentalInfo}
+            index={index}
+          />
         ))}
       </section>
     </main>
   );
 }
 
-function RecruitCard({ recruitInfo }: { recruitInfo: IRecruitInfo }) {
+function RentalHouseCard({
+  rentalInfo,
+  index,
+}: {
+  rentalInfo: IRentalInfo;
+  index: number;
+}) {
   return (
     <article className={"w-full flex flex-col"}>
       <div
-        className={"w-full h-120 bg-gray-300 rounded-12"}
-        id={"recruit-default-thumbnail"}
-      />
+        className={"w-full h-120 bg-gray-300 rounded-12 overflow-clip"}
+        id={"recruit-default-thumbnail"}>
+        <Image alt={"thumbnail"} src={thumbnailList[index % 3]} />
+      </div>
       <div className={"flex flex-col p-8"}>
-        <h3 className={"text-18"}>{recruitInfo.title}</h3>
-        <span className={"text-16 text-text-sub"}>{recruitInfo.company}</span>
-        <span className={"text-16 text-text-sub"}>{recruitInfo.location}</span>
-        <span className={"text-16 text-text-sub ml-auto"}>
-          {recruitInfo.posted_date}
-        </span>
+        <h3 className={"text-18"}>{rentalInfo["MGMT_NM"]}</h3>
+        <span className={"text-16 text-text-sub"}>{rentalInfo["GB"]}</span>
+        <span className={"text-16 text-text-sub"}>{rentalInfo["LOCATE"]}</span>
       </div>
     </article>
   );
