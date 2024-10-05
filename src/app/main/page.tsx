@@ -56,6 +56,8 @@ export default function BuptPage() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!questionOption) return;
+
     setQaList((prev) => [
       ...prev,
       {
@@ -80,9 +82,10 @@ export default function BuptPage() {
       <BuptHeader />
       <section
         className={
-          'w-full h-full flex flex-col gap-y-36 pt-72 pb-132 bg-gray-100 overflow-y-scroll p-12 py-16 scroll-hidden'
+          'w-full h-full flex flex-col gap-y-36 pt-72 pb-132 bg-white overflow-y-scroll p-12 py-16 scroll-hidden'
         }>
         <BuptQuestionStart
+          disabled={questionOption !== null}
           questionOption={questionOption}
           selectQuestionOption={selectQuestionOption}
         />
@@ -96,6 +99,7 @@ export default function BuptPage() {
         <div ref={lastMessageRef} />
       </section>
       <SearchBar
+        disabled={questionOption === null}
         searchInput={searchInput}
         setSearchInput={setSearchInput}
         onSubmit={handleSubmit}
@@ -108,28 +112,34 @@ function SearchBar({
   searchInput,
   setSearchInput,
   onSubmit,
+  disabled,
 }: {
   searchInput: string;
   setSearchInput: (value: string) => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  disabled: boolean;
 }) {
   return (
     <form
       id={'search-bar'}
       onSubmit={onSubmit}
-      className={'px-12 fixed bottom-60 w-full h-60 flex gap-x-8 items-center'}>
+      className={
+        'px-12 fixed bottom-60 w-full h-60 flex gap-x-8 items-center bg-white'
+      }>
       <input
         className={
-          'w-full h-48 px-24 text-18 text-black bg-white rounded-full focus:outline-none'
+          'w-full h-48 px-24 text-18 text-black bg-bg-default rounded-full focus:outline-none disabled:opacity-50'
         }
+        disabled={disabled}
         placeholder={"Ask me anything you're curious about."}
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
       />
       <button
+        disabled={disabled}
         type={'submit'}
         className={
-          'bg-bg-sea p-16 rounded-full flex items-center justify-center'
+          'bg-bg-sea p-16 rounded-full flex items-center justify-center disabled:opacity-50'
         }>
         <FaMagnifyingGlass color={'white'} size={16} />
       </button>
@@ -138,9 +148,11 @@ function SearchBar({
 }
 
 function BuptQuestionStart({
+  disabled,
   questionOption,
   selectQuestionOption,
 }: {
+  disabled: boolean;
   questionOption: TQuestionOption | null;
   selectQuestionOption: (value: TQuestionOption) => void;
 }) {
@@ -154,7 +166,8 @@ function BuptQuestionStart({
             {questionOptionList.map((item) => (
               <button
                 key={item.value}
-                className={`w-full rounded-12 flex items-center justify-center py-16 border-1 ${questionOption === item.value ? 'bg-bg-sea text-white' : 'bg-white text-black'}`}
+                disabled={disabled}
+                className={`w-full h-106 rounded-12 flex px-8 items-center justify-center py-16 border-1 disabled:opacity-50 ${questionOption === item.value ? 'bg-bg-sea text-white' : 'bg-white text-black'}`}
                 onClick={() => selectQuestionOption(item.value)}>
                 {item.label}
               </button>

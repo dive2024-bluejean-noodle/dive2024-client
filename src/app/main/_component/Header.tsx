@@ -6,7 +6,7 @@ export default function BuptHeader() {
   return (
     <header
       className={
-        'w-full h-60 flex items-center justify-between border-b-1 fixed top-0 left-0 right-0 bg-white'
+        'w-full h-60 flex items-center justify-between fixed top-0 left-0 right-0 bg-white'
       }>
       <button className={'p-16'}>
         <GiHamburgerMenu size={24} />
