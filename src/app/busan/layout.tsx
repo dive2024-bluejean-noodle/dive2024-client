@@ -13,7 +13,7 @@ export default function BusanLayout({
 }) {
   return (
     <>
-      {/*<CheckLoginManager />*/}
+      <CheckLoginManager />
       {children}
       <BottomNavigationBar />
     </>

@@ -37,7 +37,7 @@ export default function MentoringPage() {
   };
 
   return (
-    <main className={"min-h-[calc(100%-240px)]"}>
+    <main className={"min-h-[calc(100%-240px)] h-fit bg-bg-default"}>
       <MentoringDetailModal
         mentoringId={selectedMentoringId}
         mentoringDetail={selectedMontoringDetail}
@@ -47,7 +47,9 @@ export default function MentoringPage() {
       <FilteringHeader language={language} setLanguage={setLanguage} />
       <section
         id={"mentor-list-section"}
-        className={"grid grid-cols-2 w-full p-12 gap-8 "}>
+        className={
+          "grid grid-cols-2 w-full p-12 gap-8 overflow-y-auto scroll-hidden pb-72"
+        }>
         {mentoringList
           .filter((_mentoringInfo) =>
             language === "All"

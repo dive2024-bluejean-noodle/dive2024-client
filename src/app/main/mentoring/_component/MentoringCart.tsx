@@ -18,10 +18,12 @@ export default function MentoringCard({
         <h4 id={"mentoring-title"} className={"text-15 text-text-title"}>
           {mentoringInfo.title}
         </h4>
-        <span className={"text-14 text-text-sub"}>
+        <span className={"text-14 text-text-sub break-all"}>
           {mentoringInfo.location}
         </span>
-        <p id={"mentoring-description"} className={"text-14 text-text-sub"}>
+        <p
+          id={"mentoring-description"}
+          className={"text-14 text-text-sub break-all"}>
           {mentoringInfo.mento_language} Able!
         </p>
       </div>

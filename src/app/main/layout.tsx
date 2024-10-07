@@ -8,7 +8,7 @@ export default function MainLayout({
 }) {
   return (
     <>
-      {/*<CheckLoginManager />*/}
+      <CheckLoginManager />
       {children}
       <BottomNavigationBar />
     </>
